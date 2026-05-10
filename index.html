@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frankim Services POS</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+  <!-- Login -->
+  <div id="loginScreen" class="modal">
+    <div class="modal-content">
+      <h2>Frankim Services POS</h2>
+      <p>Staff Login</p>
+      <select id="userRole">
+        <option value="Cashier">Cashier</option>
+        <option value="Manager">Manager</option>
+      </select>
+      <input type="text" id="username" placeholder="Username" value="staff">
+      <input type="password" id="password" placeholder="Password" value="frankim2026">
+      <button onclick="login()">Login</button>
+    </div>
+  </div>
+
+  <div id="mainApp" class="hidden">
+    <header>
+      <h1>🛠️ Frankim Services POS</h1>
+      <p>Thika Road, Nairobi • 0733 227 794 | 0728 671 110 | 0737 898 403</p>
+      <div id="userInfo"></div>
+    </header>
+
+    <div class="container">
+      <div class="products-section">
+        <h2>Products</h2>
+        <input type="text" id="searchBar" placeholder="🔍 Search products..." onkeyup="filterProducts()">
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+
+      <div class="cart-section">
+        <h2>🛒 Cart</h2>
+        <input type="text" id="customerName" placeholder="Customer Name">
+        <p><strong>Receipt No:</strong> <span id="receiptNo">FRK-00000</span></p>
+
+        <table id="cartTable">
+          <thead>
+            <tr><th>Item</th><th>Qty</th><th>Price</th><th>Subtotal</th><th>Action</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <div class="total">Total: KSh <span id="totalAmount">0</span></div>
+
+        <button class="btn mpesa-btn" onclick="payWithMpesa()">💰 Pay with M-Pesa</button>
+        <button class="btn whatsapp-btn" onclick="sendToWhatsApp()">📲 Send to WhatsApp</button>
+        <button class="btn print-btn" onclick="printReceipt()">🖨️ Print Receipt</button>
+        <button class="btn" onclick="clearCart()">Clear Cart</button>
+        <button class="btn reports-btn" onclick="viewReports()">📊 Reports & Export Excel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
